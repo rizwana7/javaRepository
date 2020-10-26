@@ -1,20 +1,16 @@
 package com.demo.spring.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "book_id")
     private int id;
     private int numOfPages;
     private String title;
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "id")
-    private List<Author> authors;
-
     private double price;
 
     public int getId() {
@@ -41,14 +37,6 @@ public class Book {
         this.title = title;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -57,4 +45,13 @@ public class Book {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", numOfPages=" + numOfPages +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
